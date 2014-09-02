@@ -1,1 +1,15 @@
 <%= render @posts %>
+
+
+<div style="margin-top: 5em">
+  <%= link_to 'New post', new_post_path, class: 'btn btn-default' %>
+</div>
+
+
+<div style="margin-top: 5em">
+  <ul>
+    <% @unpublished.each do |post| %>
+      <li><%= link_to post.title, edit_post_path(post) %></li>
+    <% end %>
+  </ul>
+</div>

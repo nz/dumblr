@@ -4,7 +4,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.published.order('created_at desc')
+    @unpublished = Post.unpublished.order('created_at desc')
   end
 
   # GET /posts/1
