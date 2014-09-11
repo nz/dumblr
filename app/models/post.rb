@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   validates_presence_of :title
   validates_presence_of :body
 
@@ -11,9 +14,27 @@ class Post < ActiveRecord::Base
     where('published != ?', true)
   end
 
-  def self.search(query)
-    query = "%#{query}%"
-    where('title LIKE ? OR body LIKE ?', query, query)
-  end
+  # A more advanced search with highlighting
+  # def self.search(query)
+  #   __elasticsearch__.search(
+  #     {
+  #       query: {
+  #         multi_match: {
+  #           query: query,
+  #           fields: ['title^10', 'body']
+  #         }
+  #       },
+  #       highlight: {
+  #         pre_tags: ['<em class="label label-highlight">'],
+  #         post_tags: ['</em>'],
+  #         fields: {
+  #           title:   { number_of_fragments: 0 },
+  #           body:    { fragment_size: 200 }
+  #         }
+  #       }
+  #     }
+  #   )
+  # end
+
 
 end

@@ -5,8 +5,11 @@
 </small></p>
 <% end %>
 
-<%= render @posts %>
-
+<% if @search %>
+  <%= render 'search_results' %>
+<% else %>
+  <%= render @posts %>
+<% end %>
 
 <div style="margin-top: 5em; margin-bottom: 5em">
   <%= link_to 'New post', new_post_path, class: 'btn btn-default' %>

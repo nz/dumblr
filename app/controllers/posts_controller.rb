@@ -6,7 +6,8 @@ class PostsController < ApplicationController
   def index
     if params[:q]
       @benchmark = Benchmark.realtime do
-        @posts = Post.search(params[:q])
+        @search = Post.search(params[:q])
+        @posts = @search.records
       end.real
     else
       @posts = Post.published.order('created_at desc')

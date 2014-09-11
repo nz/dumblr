@@ -1,0 +1,20 @@
+<% @search.records.each_with_hit do |post, hit| %>
+  <article class="post">
+    <header>
+      <% if hit.try(:highlight).try(:title) %>
+        <h2><%= link_to hit.highlight.title.first.html_safe, post %></h2>
+      <% else %>
+        <h2><%= link_to post.title, post %></h2>
+      <% end %>
+    </header>
+    <main>
+      <% if hit.try(:highlight).try(:body) %>
+        <% hit.highlight.body.each do |excerpt| %>
+          <%= markdown excerpt %>
+        <% end %>
+      <% else %>
+        <%= markdown post.body %>
+      <% end %>
+    </main>
+  </article>
+<% end %>

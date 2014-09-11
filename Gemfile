@@ -22,6 +22,15 @@ gem 'spring',        group: :development
 
 gem 'redcarpet'
 
+## Elasticsearch gems
+
+# Integrate Elasticsearch with ActiveRecord models
+gem 'elasticsearch-model'
+# Rake tasks and instrumentation
+gem 'elasticsearch-rails'
+# Client configuration to run on Heroku with Bonsai
+gem 'bonsai-elasticsearch-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
