@@ -16,3 +16,20 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.page-header {
+  display: flex;
+}
+.page-header-title {
+  flex: 3;
+  h1 {
+    margin: 0;
+  }
+}
+.page-header-search {
+  flex: 2;
+}
+
+p {
+  margin-bottom: 1em;
+}

@@ -9,8 +9,15 @@
 <body>
 
 <div class="container">
-  <div class="header">
-    <h1><%= link_to 'dumblr', root_path %></h1>
+  <div class="page-header">
+    <div class="page-header-title">
+      <h1><%= link_to 'dumblr', root_path %></h1>
+    </div>
+    <div class="page-header-search">
+      <%= form_tag posts_path, method: :get do %>
+        <%= search_field_tag 'q', params[:q], class: 'form-control', autocomplete: 'off' %>
+      <% end %>
+    </div>
   </div>
   <%= yield %>
 </div>

@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+
+  seconds:
+    nano:  "ns"
+    micro: "µs"
+    mili:  "ms"
+    unit:  "s"

@@ -1,3 +1,10 @@
+<% if @benchmark %>
+<p><small>
+  Found <%= pluralize @posts.length, 'posts' %> in
+  <%= number_to_human @benchmark, units: :seconds %>
+</small></p>
+<% end %>
+
 <%= render @posts %>
 
 
@@ -6,13 +13,14 @@
 </div>
 
 
+<% if @drafts.present? %>
+  <h2>Drafts</h2>
 
-<h2>Drafts</h2>
-
-<div style="margin-top: 1em; margin-bottom: 5em">
-  <ul>
-    <% @unpublished.each do |post| %>
-      <li><%= link_to post.title, edit_post_path(post) %></li>
-    <% end %>
-  </ul>
-</div>
+  <div style="margin-top: 1em; margin-bottom: 5em">
+    <ul>
+      <% @drafts.each do |post| %>
+        <li><%= link_to post.title, edit_post_path(post) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -4,8 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.published.order('created_at desc')
-    @unpublished = Post.unpublished.order('created_at desc')
+    if params[:q]
+      @benchmark = Benchmark.realtime do
+        @posts = Post.search(params[:q])
+      end.real
+    else
+      @posts = Post.published.order('created_at desc')
+      @drafts = Post.unpublished.order('created_at desc')
+    end
   end
 
   # GET /posts/1

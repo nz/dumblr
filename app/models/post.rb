@@ -11,4 +11,9 @@ class Post < ActiveRecord::Base
     where('published != ?', true)
   end
 
+  def self.search(query)
+    query = "%#{query}%"
+    where('title LIKE ? OR body LIKE ?', query, query)
+  end
+
 end
